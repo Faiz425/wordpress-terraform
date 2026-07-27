@@ -16,3 +16,7 @@ crash.log
 
 # Variables containing secrets
 terraform.tfvars
+
+# Keys
+*.pem
+
