@@ -154,14 +154,6 @@ Possible improvements include:
 * GitHub Actions CI/CD
 * CloudWatch monitoring
 
-## Author
-
-**Faizan Akbar**
-
-AWS | Terraform | DevOps | Cloud Infrastructure
-
-
-
 
 
 # Screenshot
