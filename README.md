@@ -1,37 +1,31 @@
-# wordpress-terraform
+# wordpress-Deployment-With-Terraform on AWS
 
-Overview
 
-A modular Terraform Infrastructure as Code project that deploys a WordPress website on AWS.
+# WordPress Deployment with Terraform on AWS
 
-The project demonstrates practical experience with AWS networking, EC2, security groups, Linux server provisioning, Terraform modules, automated configuration and Git.
+## Overview
 
-Architecture
-Internet
-   |
-Internet Gateway
-   |
-VPC
-   |
-Public Subnet
-   |
-Security Group
-   |
-EC2 - Amazon Linux 2023
-   |
-User Data
-   |
-Apache + PHP + MariaDB
-   |
-WordPress
-AWS Resources
-VPC
-Public Subnet
-Internet Gateway
-Route Table
-Security Group
-EC2 Instance
-Terraform Structure
+This project deploys a WordPress website on AWS using **Terraform Infrastructure as Code**.
+
+The infrastructure is built using Terraform modules and includes a VPC, public subnet, Internet Gateway, security group and EC2 instance. The EC2 server is automatically configured using embedded Terraform user data.
+
+## AWS Infrastructure
+
+* VPC
+* Public subnet
+* Internet Gateway
+* Route table
+* Security group
+* EC2 instance
+* Amazon Linux 2023
+* Apache
+* PHP
+* MariaDB
+* WordPress
+
+## Terraform Structure
+
+```text
 wordpress-terraform/
 ├── main.tf
 ├── variables.tf
@@ -45,62 +39,127 @@ wordpress-terraform/
     ├── vpc/
     ├── security-group/
     └── ec2/
-Key Features
-Modular Terraform architecture
-Amazon Linux 2023 EC2 deployment
-Dynamic AMI lookup
-Automated server configuration using embedded user_data
-Apache, PHP and MariaDB installation
-Automated WordPress download and configuration
-AWS Security Group configuration
-Git/GitHub version control
-Terraform state and provider files excluded from Git
-Deployment
+```
+
+## How It Works
+
+Terraform creates the AWS infrastructure and connects the resources together:
+
+```text
+Internet
+   |
+Internet Gateway
+   |
+VPC
+   |
+Public Subnet
+   |
+Security Group
+   |
+EC2 Instance
+   |
+User Data
+   |
+Apache + PHP + MariaDB
+   |
+WordPress
+```
+
+The EC2 user data script automatically installs the required software and downloads WordPress when the instance is created.
+
+## Deployment
+
+Clone the repository and initialise Terraform:
+
+```bash
 terraform init
+```
+
+Format the configuration:
+
+```bash
 terraform fmt
+```
+
+Validate the configuration:
+
+```bash
 terraform validate
+```
+
+Review the infrastructure changes:
+
+```bash
 terraform plan
+```
+
+Deploy the infrastructure:
+
+```bash
 terraform apply
+```
 
-After deployment, access WordPress through the EC2 public IP:
-
-http://<EC2-PUBLIC-IP>
+After deployment, the WordPress site can be accessed through the EC2 public IP.
 
 To remove the infrastructure:
 
+```bash
 terraform destroy
-Security
+```
 
-The security group allows:
+## Security
 
-Port	Purpose
-22	SSH
-80	HTTP
+The EC2 security group controls access to the server.
 
-For a production deployment, SSH should be restricted to trusted IP addresses or replaced with AWS Systems Manager Session Manager.
+| Port | Purpose |
+| ---- | ------- |
+| 22   | SSH     |
+| 80   | HTTP    |
 
-What This Project Demonstrates
-Infrastructure as Code
-AWS networking
-Terraform modules
-Linux administration
-Automated application provisioning
-Cloud security fundamentals
-Git-based infrastructure management
-Future Improvements
+For a production environment, SSH access should be restricted to trusted IP addresses or replaced with AWS Systems Manager.
 
-Potential production-focused improvements include:
+## Git & Terraform
 
-Application Load Balancer
-Auto Scaling
-Amazon RDS
-Private subnets
-HTTPS with ACM
-Route 53
-S3 remote Terraform state
-GitHub Actions CI/CD
-CloudWatch monitoring
-AWS Secrets Manager
+Git is used to track changes to the Terraform configuration.
+
+Terraform-generated files and local state are excluded from the repository using `.gitignore`.
+
+The repository keeps `terraform.lock.hcl` so the Terraform provider dependency versions remain consistent.
+
+## What I Learned
+
+This project helped develop practical experience with:
+
+* Terraform Infrastructure as Code
+* Terraform modules
+* AWS networking
+* EC2
+* Security Groups
+* Linux server administration
+* Automated server provisioning
+* WordPress deployment
+* Git and GitHub
+
+## Future Improvements
+
+Possible improvements include:
+
+* Application Load Balancer
+* Amazon RDS
+* Private subnets
+* Auto Scaling
+* HTTPS with AWS Certificate Manager
+* Route 53
+* Remote Terraform state
+* GitHub Actions CI/CD
+* CloudWatch monitoring
+
+## Author
+
+**Faizan Akbar**
+
+AWS | Terraform | DevOps | Cloud Infrastructure
+
 
 
 
